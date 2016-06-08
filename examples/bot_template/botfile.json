@@ -7,6 +7,5 @@
   "default_interval": 5,
   "source_dir": "src",
   "main_file": "main_module",
-  "max_instances": 1,
-  "custom_brain": false
+  "max_instances": 1
 }
