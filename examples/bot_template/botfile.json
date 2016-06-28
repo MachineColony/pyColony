@@ -1,7 +1,7 @@
 {
   "name": "bot_template",
   "sdk_lang": "python",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "privacy": "private",
   "run_mode": "scheduled",
   "default_interval": 5,
