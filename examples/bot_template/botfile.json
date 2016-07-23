@@ -4,6 +4,7 @@
   "version": "0.0.2",
   "privacy": "private",
   "run_mode": "scheduled",
+  "archetype": "organizer",
   "default_interval": 5,
   "source_dir": "src",
   "main_file": "main_module",
