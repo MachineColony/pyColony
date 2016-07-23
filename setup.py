@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 if sys.argv[-1] == 'install':
     setup(name='pycolony',
-          version='0.9.1',
+          version='0.9.2',
           description='Python Machine Colony SDK',
           author='Machine Colony Inc.',
           author_email='maxwell@machinecolony.com',

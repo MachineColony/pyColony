@@ -73,3 +73,14 @@ class MC():
 
     def get_gmail_labels(self, user_id):
         return self._post("https://integrations.machinecolony.com/google/gmail/get-labels", {'user_id': user_id})
+
+    def trace(self, bot_instance_id, message):
+        """
+        Trace steps to explain what a bot is doing, log out important data to a dashboard module, etc.
+
+        :param bot_instance_id:
+        :param message:
+            Any valid string.
+        :return:
+        """
+        return self._post("https://trace.machinecolony.com/%s" + str(bot_instance_id), {"message": message})
