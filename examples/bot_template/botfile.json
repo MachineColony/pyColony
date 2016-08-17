@@ -8,5 +8,29 @@
   "default_interval": 5,
   "source_dir": "src",
   "main_file": "main_module",
-  "max_instances": 1
+  "max_instances": 1,
+  "config_vars": {
+    "dummy_var": {
+      "type": "number",
+      "default_val": 1,
+      "description": "Specify the type so that the variables can be configured in the frontend. If a default value is needed, specify it as default_val."
+    }
+    "string_var": {
+      "type": "string",
+      "description": "A string variable to be configured by the user; this description should explain what it's for."
+    },
+    "array_var": {
+      "type": "array:string",
+      "description": "Some array of strings, such as URLs, emails, etc."
+    },
+    "array_of_objects_var": {
+      "type": "array:object",
+      "description": "Objects or arrays of objects require the schema to be present as below. Validation only goes one level deep.",
+      "schema": {
+        "field1": "string",
+        "field2": "array|number",
+        "other_field": "object"
+      }
+    }
+  }
 }
