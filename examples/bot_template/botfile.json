@@ -14,7 +14,7 @@
       "type": "number",
       "default_val": 1,
       "description": "Specify the type so that the variables can be configured in the frontend. If a default value is needed, specify it as default_val."
-    }
+    },
     "string_var": {
       "type": "string",
       "description": "A string variable to be configured by the user; this description should explain what it's for."
