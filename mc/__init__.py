@@ -1,7 +1,10 @@
 import requests
+import json
+from websocket import create_connection
 
 
 class MC():
+
     def __init__(self, ctx):
         self._ctx = ctx
         self.api_key = ctx['user']['client_key']
@@ -40,6 +43,12 @@ class MC():
 
     def create_auto_classifier(self, data):
         return self._post('https://ml.machinecolony.com/classification/auto/create', data)
+
+    def create_svm_classifier(self, data):
+        return self._post('https://ml.machinecolony.com/classification/svm/create', data)
+
+    def create_bayes_classifier(self, data):
+        return self._post('https://ml.machinecolony.com/bayes/nb/create', data)
 
     def evaluate_sentinel(self, model_id, data):
         endpoint = 'https://sentinel.machinecolony.com/models/{}/evaluate'.format(model_id)
@@ -84,3 +93,32 @@ class MC():
         :return:
         """
         return self._post("https://trace.machinecolony.com/bot/%s" + str(bot_instance_guid), {"message": message})
+
+    def evaluate_model_streaming(self, model_id, model_type):
+        return EvaluationStream(model_id, model_type)
+
+
+class EvaluationStream(object):
+
+    def __init__(self, model_id, model_type):
+        """
+        init a evaluation stream
+        :param model_id:
+        :param model_type: classification, regression, bayes
+        """
+        path = {'bayes': 'bayes/nb'}.get(model_type, model_type)
+        self.ws = create_connection('ws://ml.machinecolony.com/streaming/{}/{}/evaluate'.format(path, model_id))
+        print self.ws.recv()
+
+    def predict(self, X):
+        """
+        predict
+        :param X: list
+        :return:
+        """
+        self.ws.send(json.dumps({'data': X}))
+        r = self.ws.recv()
+        return json.loads(r).get('result')
+
+    def close(self):
+        self.ws.close()
